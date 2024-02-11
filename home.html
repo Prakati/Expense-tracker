@@ -1,0 +1,74 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Link to your external CSS file -->
+    <link rel="stylesheet" href="path/to/your/style.css">
+    <style>
+        /* Add any additional inline CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #725a7a, #ff7582);
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        /* Add more styles as needed */
+        .button-container {
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Expense Tracker</h1>
+    <p>
+        {% if current_user.is_authenticated %}
+            Hello, {{ current_user.username }}!
+        {% else %}
+            Welcome to the Home Page. Please log in or register to start tracking your expenses.
+        {% endif %}
+    </p>
+    <!-- Button container -->
+    <div class="button-container">
+        <!-- Add Expense button -->
+        <a href="{{ url_for('add') }}" class="button">Add Expense</a>
+        <!-- View Expenses button -->
+        <a href="{{ url_for('expenses') }}" class="button">View Expenses</a>
+        {% if current_user.is_authenticated %}
+            <!-- Logout button -->
+            <a href="{{ url_for('logout') }}" class="button">Logout</a>
+        {% else %}
+            <!-- Login button -->
+            <a href="{{ url_for('login') }}" class="button">Login</a>
+            <!-- Register button -->
+            <a href="{{ url_for('register') }}" class="button">Register</a>
+        {% endif %}
+    </div>
+    <!-- You can add additional content or styling as needed -->
+</body>
+</html>
